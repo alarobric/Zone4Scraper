@@ -23,11 +23,11 @@ Got stuck since csv is built dynamically in the browser. No way to request it fr
 ## Changelog
 
 Tuesday
-Got csv download using Selenium working finally.
-Need to decide whether to keep using that and parsing the csv
-Or start parsing the webpage directly - can just keep Selenium open and read occasionally.
-Check if we can detect changes to the page? or if we have to parse and diff
-Look at using the announcer view instead - shows new finish line crossers.
+* Got csv download using Selenium working finally.
+* Need to decide whether to keep using that and parsing the csv
+* Or start parsing the webpage directly - can just keep Selenium open and read occasionally.
+* Check if we can detect changes to the page? or if we have to parse and diff
+* Look at using the announcer view instead - shows new finish line crossers.
 
 Wednesday
-Worked on console side - can store and load data with pickle, can select a category and output data
+* Worked on console side - can store and load data with pickle, can select a category and output data
