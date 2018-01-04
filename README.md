@@ -8,8 +8,10 @@ File format uses a base header, and then category header adding extra columns, t
 
 ## Setup
 Got stuck since csv is built dynamically in the browser. No way to request it from the server. So we'll need to use Selenium and a browser driver to actually load the dynamic content.
-pip install selenium
-https://github.com/mozilla/geckodriver/releases
+
+`pip install selenium`
+
+[https://github.com/mozilla/geckodriver/releases]()
 
 ## TODO
 * Parse header and support differing column orderings - check if necessary in other races
