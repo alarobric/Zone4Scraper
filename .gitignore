@@ -1,0 +1,5 @@
+geckodriver.log
+cache.pickle
+__pycache__
+
+Results*.csv
