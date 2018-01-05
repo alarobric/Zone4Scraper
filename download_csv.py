@@ -11,13 +11,13 @@ def download_csv(race_url):
     @returns filename of new csv
     """
     #set firefox to download without prompting
-    fp = webdriver.FirefoxProfile()
-    fp.set_preference("browser.download.folderList", 2)
-    fp.set_preference("browser.download.manager.showWhenStarting", False)
-    fp.set_preference("browser.download.dir", os.getcwd())
-    fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain;charset=utf-8")
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("browser.download.folderList", 2)
+    profile.set_preference("browser.download.manager.showWhenStarting", False)
+    profile.set_preference("browser.download.dir", os.getcwd())
+    profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain;charset=utf-8")
 
-    browser = webdriver.Firefox(firefox_profile=fp)
+    browser = webdriver.Firefox(firefox_profile=profile)
     browser.implicitly_wait(10) # tell Firefox to wait up to 10 seconds to find something
 
     #browser.get('http://zone4.ca/race/2017-12-17/c6e78e84/2017-haywood-noram-day-3-mass/results/')

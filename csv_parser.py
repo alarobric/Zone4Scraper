@@ -86,5 +86,5 @@ class Parser(object):
         return self.race
 
 if __name__ == '__main__':
-    parser = Parser(debug=True)
-    parser.parse_csv('test_results.csv')
+    PARSER = Parser(debug=True)
+    PARSER.parse_csv('test_results.csv')

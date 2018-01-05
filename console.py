@@ -3,6 +3,7 @@ import pickle
 
 import csv_parser
 import download_csv
+import html_parser
 
 NUM_RACERS_OUTPUT = 6
 SHARE_FOLDER_PATH = r'C:\Users\Alan\Desktop\scoreboard.txt'
@@ -12,6 +13,7 @@ class Console(object):
     race = None
     category = None
     parser = csv_parser.Parser(True)
+    html_parser = None
 
     def __init__(self):
         pass
@@ -35,8 +37,10 @@ class Console(object):
             print('You have no race data - load some?')
             print('[l] Load from pickle')
             print('[p] Download and parse race results as csv')
+            print('[k] Parse html results')
         else:
-            print('You have %d categories and %d racers loaded' % (self.race.num_categories(), self.race.num_racers()))
+            print('You have %d categories and %d racers loaded'
+                  % (self.race.num_categories(), self.race.num_racers()))
 
         if self.category:
             print('Current category: ', self.category)
@@ -65,11 +69,17 @@ class Console(object):
         print('Got new csv ', new_csv)
         self.race = self.parser.parse_csv(new_csv)
 
+    def parse_race_as_html(self):
+        print('Parsing race as html')
+        self.html_parser = html_parser.Parser(self.racename, debug=True)
+        self.race = self.html_parser.parse_page()
+        self.html_parser.quit()
+
     def select_category(self):
         if not self.race:
             print('You need to parse a race first')
             return
-        
+
         for i, cat in enumerate(self.race.categories):
             print('%d. %s' % (i+1, cat.name))
         choice = input('Select a category: ')
@@ -100,7 +110,7 @@ class Console(object):
             num_racers_output = len(self.category.racers)
         else:
             num_racers_output = min(num_racers_output, len(self.category.racers))
-        
+
         with open(SHARE_FOLDER_PATH, 'w') as scoreboard_file:
             header = '** %s **\r\n' %(self.category.name)
             scoreboard_file.write(header)
@@ -112,7 +122,7 @@ class Console(object):
                 print(self.category.racers[i].as_string_for_scoreboard())
 
     def quit(self):
-        with open('cache.pickle','wb') as cache:
+        with open('cache.pickle', 'wb') as cache:
             pickle.dump(self.race, cache)
 
     def load(self):
@@ -129,8 +139,10 @@ class Console(object):
             self.display_title_bar()
             if choice == 's':
                 self.setup_race_name()
-            elif choice =='p':
+            elif choice == 'p':
                 self.parse_race()
+            elif choice == 'k':
+                self.parse_race_as_html()
             elif choice == 'c':
                 self.select_category()
             elif choice == 'o':
@@ -145,5 +157,5 @@ class Console(object):
         print('Bye!')
 
 if __name__ == '__main__':
-    app = Console()
-    app.run()
+    APP = Console()
+    APP.run()

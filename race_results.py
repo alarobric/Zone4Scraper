@@ -73,3 +73,8 @@ class Racer(object):
         ret += self.firstname + ' ' + self.lastname + ' ' + str(self.bib)
         ret += ' ' + self.time
         return ret
+
+    def is_finisher(self):
+        if not self.status and self.rank.isnumeric():
+            return True
+        return False
