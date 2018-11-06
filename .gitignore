@@ -3,3 +3,5 @@ cache.pickle
 __pycache__
 
 Results*.csv
+
+env/
